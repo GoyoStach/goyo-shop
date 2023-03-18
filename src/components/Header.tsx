@@ -13,7 +13,8 @@ import {
   useColorModeValue,
   Stack,
   useColorMode,
-  Center
+  Center,
+  Heading
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
@@ -69,13 +70,13 @@ const Header = () => {
 
   return (
     <>
-      <Box px={4}>
+      <Box py={2}>
         <Flex
           h={16}
           alignItems={'center'}
           justifyContent={'space-between'}
         >
-          <Box>Logo</Box>
+          <Heading>Goyo-Shop</Heading>
 
           <Flex alignItems={'center'}>
             <Stack
@@ -91,33 +92,22 @@ const Header = () => {
                   <MenuButton
                     as={Button}
                     rounded={'full'}
-                    variant={'link'}
                     cursor={'pointer'}
                     minW={0}
                   >
                     <Avatar
+                      color={colorMode === 'light' ? 'black' : 'white'}
                       size={'sm'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      name={'Goyo'}
                     />
                   </MenuButton>
                   <MenuList alignItems={'center'}>
-                    <br />
                     <Center>
-                      <Avatar
-                        size={'2xl'}
-                        src={
-                          'https://avatars.dicebear.com/api/male/username.svg'
-                        }
-                      />
+                      <p>Goyo</p>
                     </Center>
-                    <br />
-                    <Center>
-                      <p>Username</p>
-                    </Center>
-                    <br />
                     <MenuDivider />
-                    <MenuItem>Your Servers</MenuItem>
-                    <MenuItem>Account Settings</MenuItem>
+                    <MenuItem>Shop</MenuItem>
+                    <MenuItem>About</MenuItem>
                     <MenuItem>Logout</MenuItem>
                   </MenuList>
                 </Menu>
