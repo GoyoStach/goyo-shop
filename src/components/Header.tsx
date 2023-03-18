@@ -1,40 +1,25 @@
 import {
-  Box,
   Flex,
   Avatar,
-  Link,
   Button,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
-  useColorModeValue,
   Stack,
   useColorMode,
   Center,
-  Heading
+  Heading,
+  Container
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
-import type { ReactNode } from 'react'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { navVariants } from 'utils/motion'
 
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700')
-    }}
-    href={'#'}
-  >
-    {children}
-  </Link>
-)
+import Link from 'next/link'
 
 const Header = () => {
   /*
@@ -60,7 +45,6 @@ const Header = () => {
   )*/
 
   const { colorMode, toggleColorMode } = useColorMode()
-  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [isConnected, setIsConnected] = useState(false)
 
@@ -69,56 +53,64 @@ const Header = () => {
   }
 
   return (
-    <>
-      <Box py={2}>
-        <Flex
-          h={16}
-          alignItems={'center'}
-          justifyContent={'space-between'}
-        >
+    <Container
+      p={2}
+      maxW={'6xl'}
+      textAlign="center"
+    >
+      <Flex
+        as={motion.div}
+        variants={navVariants}
+        initial="hidden"
+        whileInView={'show'}
+        h={16}
+        alignItems={'center'}
+        justifyContent={'space-between'}
+      >
+        <Link href={'/'}>
           <Heading>Goyo-Shop</Heading>
+        </Link>
 
-          <Flex alignItems={'center'}>
-            <Stack
-              direction={'row'}
-              spacing={7}
-            >
-              <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              </Button>
+        <Flex alignItems={'center'}>
+          <Stack
+            direction={'row'}
+            spacing={7}
+          >
+            <Button onClick={toggleColorMode}>
+              {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            </Button>
 
-              {isConnected ? (
-                <Menu>
-                  <MenuButton
-                    as={Button}
-                    rounded={'full'}
-                    cursor={'pointer'}
-                    minW={0}
-                  >
-                    <Avatar
-                      color={colorMode === 'light' ? 'black' : 'white'}
-                      size={'sm'}
-                      name={'Goyo'}
-                    />
-                  </MenuButton>
-                  <MenuList alignItems={'center'}>
-                    <Center>
-                      <p>Goyo</p>
-                    </Center>
-                    <MenuDivider />
-                    <MenuItem>Shop</MenuItem>
-                    <MenuItem>About</MenuItem>
-                    <MenuItem>Logout</MenuItem>
-                  </MenuList>
-                </Menu>
-              ) : (
-                <Button onClick={() => handleSignIn()}>Sign In</Button>
-              )}
-            </Stack>
-          </Flex>
+            {isConnected ? (
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  rounded={'full'}
+                  cursor={'pointer'}
+                  minW={0}
+                >
+                  <Avatar
+                    color={colorMode === 'light' ? 'black' : 'white'}
+                    size={'sm'}
+                    name={'Goyo'}
+                  />
+                </MenuButton>
+                <MenuList alignItems={'center'}>
+                  <Center>
+                    <p>Goyo</p>
+                  </Center>
+                  <MenuDivider />
+                  <MenuItem>Shop</MenuItem>
+                  <MenuItem>About</MenuItem>
+                  <MenuItem>Logout</MenuItem>
+                </MenuList>
+              </Menu>
+            ) : (
+              <Button onClick={() => handleSignIn()}>Sign In</Button>
+            )}
+          </Stack>
         </Flex>
-      </Box>
-    </>
+      </Flex>
+    </Container>
   )
 }
 

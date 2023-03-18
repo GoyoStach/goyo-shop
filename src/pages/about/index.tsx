@@ -1,19 +1,18 @@
 import { type NextPage } from 'next'
 import Head from 'next/head'
 
-import { Flex, Spacer, useColorModeValue } from '@chakra-ui/react'
+import { Divider, Flex, Spacer, useColorModeValue } from '@chakra-ui/react'
 import Header from 'components/Header'
-import Masthead from 'components/Masthead'
 import Footer from 'components/Footer'
 
-const Home: NextPage = () => {
+const About: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Goyo-Shop</title>
+        <title>Shop</title>
         <meta
-          name="Goyo-Shop"
-          content="New application using goyo-boilerplate"
+          name="Goyo - Shop"
+          content="Shop products in the goyo-shop !"
         />
         <link
           rel="icon"
@@ -29,13 +28,21 @@ const Home: NextPage = () => {
         )}
       >
         <Header />
+        <Divider
+          w={'xl'}
+          mx="auto"
+        />
         <Spacer />
-        <Masthead />
+        {/**Content */}
         <Spacer />
+        <Divider
+          w={'xl'}
+          mx="auto"
+        />
         <Footer />
       </Flex>
     </>
   )
 }
 
-export default Home
+export default About

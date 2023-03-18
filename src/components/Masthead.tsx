@@ -10,8 +10,13 @@ import {
   useColorModeValue,
   createIcon
 } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
+import { slideIn } from 'utils/motion'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const Masthead = () => {
+  const router = useRouter()
   return (
     <>
       <Head>
@@ -21,7 +26,7 @@ const Masthead = () => {
         />
       </Head>
 
-      <Container maxW={'3xl'}>
+      <Container maxW={'6xl'}>
         <Stack
           as={Box}
           textAlign={'center'}
@@ -32,6 +37,10 @@ const Masthead = () => {
             fontWeight={600}
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
+            initial="hidden"
+            as={motion.div}
+            variants={slideIn('left', 'Inertia', '0', '2')}
+            whileInView={'show'}
           >
             Des produits
             <br />
@@ -54,18 +63,25 @@ const Masthead = () => {
             align={'center'}
             alignSelf={'center'}
             position={'relative'}
+            initial="hidden"
+            as={motion.div}
+            variants={slideIn('right', 'Inertia', '0', '2')}
+            whileInView={'show'}
           >
-            <Button
-              colorScheme={'green'}
-              bg={'green.400'}
-              rounded={'full'}
-              px={6}
-              _hover={{
-                bg: 'green.500'
-              }}
-            >
-              Boutique
-            </Button>
+            <Link href={'/Shop'}>
+              <Button
+                colorScheme={'green'}
+                bg={'green.400'}
+                rounded={'full'}
+                px={6}
+                _hover={{
+                  bg: 'green.500'
+                }}
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises
+              >
+                Boutique
+              </Button>
+            </Link>
             <Button
               variant={'link'}
               colorScheme={'blue'}
