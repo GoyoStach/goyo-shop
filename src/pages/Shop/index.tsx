@@ -123,7 +123,7 @@ const Shop: NextPage = () => {
           initial="hidden"
           whileInView={'show'}
         >
-          <Heading>Chairs</Heading>
+          <Heading>Chaises</Heading>
         </Center>
         <ProductGrid data={mockDataChairs} />
         <Spacer />
@@ -133,11 +133,10 @@ const Shop: NextPage = () => {
           initial="hidden"
           whileInView={'show'}
         >
-          <Heading>Watchs</Heading>
+          <Heading>Montres</Heading>
         </Center>
         <ProductGrid data={mockDataWatchs} />
         <Spacer />
-
         <Footer />
       </Flex>
     </>

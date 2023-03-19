@@ -11,8 +11,9 @@ import {
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import { useRouter } from 'next/router'
+import ProductIndividualImage from 'components/shop/ProductIndividualImage'
 
-const Home: NextPage = () => {
+const IndividualProductPage: NextPage = () => {
   const router = useRouter()
   const { id } = router.query
   return (
@@ -42,7 +43,9 @@ const Home: NextPage = () => {
           mx="auto"
         />
         <Spacer />
-        <Center>{id}</Center>
+        <Center>
+          <ProductIndividualImage />
+        </Center>
         <Spacer />
         <Divider
           w={'xl'}
@@ -54,4 +57,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default IndividualProductPage

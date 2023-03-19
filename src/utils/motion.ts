@@ -1,7 +1,7 @@
 export const navVariants = {
   hidden: {
     opacity: 0,
-    y: -50,
+    y: -25,
     transition: {
       type: 'spring',
       stiffness: 300,
