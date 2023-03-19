@@ -89,7 +89,7 @@ const Masthead = () => {
             >
               En savoir plus
             </Button>
-            <Box>
+            <Box visibility={['hidden', 'visible']}>
               <Icon
                 as={Arrow}
                 color={useColorModeValue('gray.800', 'gray.300')}

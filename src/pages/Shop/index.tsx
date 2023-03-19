@@ -11,88 +11,19 @@ import {
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import ProductGrid from 'components/shop/ProductGrid'
-import type { ProductSimple } from 'types/ProductSimple.type'
 import { motion } from 'framer-motion'
 import { zoomIn } from 'utils/motion'
+import { mockDataChairs, mockDataWatchs } from 'mock'
+import type { ProductSimple } from 'types/ProductSimple.type'
 
-const mockDataChairs: ProductSimple[] = [
-  {
-    imageSrc:
-      'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
-    brand: 'Brand',
-    name: 'Nice Chair, pink',
-    price: 110,
-    previousPrice: 240
-  },
-  {
-    imageSrc:
-      'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
-    brand: 'Brand',
-    name: 'Nice Chair, pink',
-    price: 110,
-    previousPrice: 240
-  },
-  {
-    imageSrc:
-      'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
-    brand: 'Brand',
-    name: 'Nice Chair, pink',
-    price: 110,
-    previousPrice: 240
-  },
-  {
-    imageSrc:
-      'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
-    brand: 'Brand',
-    name: 'Nice Chair, pink',
-    price: 110,
-    previousPrice: 240
-  },
-  {
-    imageSrc:
-      'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
-    brand: 'Brand',
-    name: 'Nice Chair, pink',
-    price: 110,
-    previousPrice: 240
-  },
-  {
-    imageSrc:
-      'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
-    brand: 'Brand',
-    name: 'Nice Chair, pink',
-    price: 110,
-    previousPrice: 240
-  },
-  {
-    imageSrc:
-      'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
-    brand: 'Brand',
-    name: 'Nice Chair, pink',
-    price: 110,
-    previousPrice: 240
+type Props = {
+  data: {
+    mockDataChairs: ProductSimple[]
+    mockDataWatchs: ProductSimple[]
   }
-]
-const mockDataWatchs: ProductSimple[] = [
-  {
-    imageSrc:
-      'https://i.ebayimg.com/images/g/x5IAAOSwC3Fizdlg/s-l1600.jpg?auto=format&fit=crop&w=1350&q=80',
-    brand: 'Watch',
-    name: 'MoonSwatch, Mission to Pluto',
-    price: 110,
-    previousPrice: 240
-  },
-  {
-    imageSrc:
-      'https://images.unsplash.com/photo-1587925358603-c2eea5305bbc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d3Jpc3R3YXRjaHxlbnwwfHwwfHw%3D&w=1000&q=80',
-    brand: 'Watch',
-    name: 'Rolex, Full flex',
-    price: 110,
-    previousPrice: 240
-  }
-]
+}
 
-const Shop: NextPage = () => {
+const Shop: NextPage<Props> = ({ data }) => {
   return (
     <>
       <Head>
@@ -125,7 +56,7 @@ const Shop: NextPage = () => {
         >
           <Heading>Chaises</Heading>
         </Center>
-        <ProductGrid data={mockDataChairs} />
+        <ProductGrid data={data.mockDataChairs} />
         <Spacer />
         <Center
           as={motion.div}
@@ -135,12 +66,21 @@ const Shop: NextPage = () => {
         >
           <Heading>Montres</Heading>
         </Center>
-        <ProductGrid data={mockDataWatchs} />
+        <ProductGrid data={data.mockDataWatchs} />
         <Spacer />
         <Footer />
       </Flex>
     </>
   )
+}
+
+export function getServerSideProps(context: unknown) {
+  /**Here should happen data fetching to Stripe or the backend to get the right info concerning the product */
+  const { id } = context.query
+
+  const data = { mockDataWatchs, mockDataChairs }
+
+  return { props: { data } }
 }
 
 export default Shop

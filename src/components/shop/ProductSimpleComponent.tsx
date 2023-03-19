@@ -18,7 +18,11 @@ type Props = {
 const ProductSimpleComponent: FC<Props> = ({ data }) => {
   return (
     <Center py={12}>
-      <Link href={{ pathname: `/Shop/product/${data.name}` }}>
+      <Link
+        href={{
+          pathname: `/Shop/product/${data.name}`
+        }}
+      >
         <Box
           role={'group'}
           p={6}

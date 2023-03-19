@@ -27,6 +27,7 @@ const Home: NextPage = () => {
           'linear(to-b, gray.300, gray.100, gray.300)',
           'linear(to-b, gray.900, gray.700, gray.900)'
         )}
+        overflow={'hidden'}
       >
         <Header />
         <Spacer />
