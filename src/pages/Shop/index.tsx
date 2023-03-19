@@ -1,3 +1,4 @@
+import type { GetServerSideProps } from 'next'
 import { type NextPage } from 'next'
 import Head from 'next/head'
 
@@ -74,7 +75,7 @@ const Shop: NextPage<Props> = ({ data }) => {
   )
 }
 
-export function getServerSideProps(context: unknown) {
+export const getServerSideProps = (context: any) => {
   /**Here should happen data fetching to Stripe or the backend to get the right info concerning the product */
   const { id } = context.query
 
