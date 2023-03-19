@@ -5,7 +5,8 @@ import {
   Heading,
   Text,
   Stack,
-  Image
+  Image,
+  Grid
 } from '@chakra-ui/react'
 import type { FC } from 'react'
 import type { ProductSimple } from 'types/ProductSimple.type'
@@ -19,13 +20,19 @@ const data = {
   previousPrice: 240
 }
 
-const ProductIndividualImage: FC = () => {
+const ProductIndividual: FC = () => {
   return (
-    <Center py={12}>
-      <Box
+    <Center p={12}>
+      <Grid
+        templateColumns={[
+          'repeat(1, 1fr)',
+          'repeat(1, 1fr)',
+          'repeat(1, 1fr)',
+          'repeat(1, 1fr)',
+          'repeat(2, 1fr)'
+        ]}
         role={'group'}
         p={6}
-        maxW={'330px'}
         w={'full'}
         bg={useColorModeValue('white', 'gray.800')}
         boxShadow={'2xl'}
@@ -37,7 +44,7 @@ const ProductIndividualImage: FC = () => {
           rounded={'lg'}
           mt={-12}
           pos={'relative'}
-          height={'230px'}
+          height={[230, 230, 230, 230, 230 * 2]}
           _after={{
             transition: 'all .3s ease',
             content: '""',
@@ -58,16 +65,54 @@ const ProductIndividualImage: FC = () => {
         >
           <Image
             rounded={'lg'}
-            height={230}
-            width={282}
+            height={[230, 230, 230, 230, 230 * 2]}
+            width={[282, 282, 282, 282, 282 * 2]}
             objectFit={'cover'}
             src={data.imageSrc}
             alt={data.name}
           />
         </Box>
-      </Box>
+        <Stack
+          p={6}
+          align={'left'}
+          textAlign={'justify'}
+        >
+          <Text
+            color={'gray.500'}
+            fontSize={'sm'}
+            textTransform={'uppercase'}
+            align={['center', 'center', 'center', 'left']}
+          >
+            {data.brand}
+          </Text>
+          <Heading
+            fontSize={'2xl'}
+            fontFamily={'body'}
+            fontWeight={500}
+          >
+            {data.name}
+          </Heading>
+          <Stack
+            direction={'row'}
+            align={'center'}
+          >
+            <Text
+              fontWeight={800}
+              fontSize={'xl'}
+            >
+              {data.price} €
+            </Text>
+            <Text
+              textDecoration={'line-through'}
+              color={'gray.600'}
+            >
+              {data.previousPrice} €
+            </Text>
+          </Stack>
+        </Stack>
+      </Grid>
     </Center>
   )
 }
 
-export default ProductIndividualImage
+export default ProductIndividual

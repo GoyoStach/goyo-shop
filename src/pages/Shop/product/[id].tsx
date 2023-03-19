@@ -5,13 +5,17 @@ import {
   Center,
   Divider,
   Flex,
+  Grid,
   Spacer,
   useColorModeValue
 } from '@chakra-ui/react'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import { useRouter } from 'next/router'
-import ProductIndividualImage from 'components/shop/ProductIndividualImage'
+import { motion } from 'framer-motion'
+import { zoomIn } from 'utils/motion'
+import ProductIndividualDescription from 'components/shop/ProductIndividualDescription'
+import ProductIndividual from 'components/shop/ProductIndividual'
 
 const IndividualProductPage: NextPage = () => {
   const router = useRouter()
@@ -38,19 +42,17 @@ const IndividualProductPage: NextPage = () => {
         )}
       >
         <Header />
-        <Divider
-          w={'xl'}
-          mx="auto"
-        />
         <Spacer />
-        <Center>
-          <ProductIndividualImage />
+        <Center
+          as={motion.div}
+          variants={zoomIn(0.1, 1)}
+          initial="hidden"
+          whileInView={'show'}
+        >
+          <ProductIndividual />
         </Center>
         <Spacer />
-        <Divider
-          w={'xl'}
-          mx="auto"
-        />
+
         <Footer />
       </Flex>
     </>
