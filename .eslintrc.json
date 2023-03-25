@@ -7,6 +7,14 @@
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
         "project": "tsconfig.json"
+      },
+      "rules": {
+        "@typescript-eslint/consistent-type-imports": "warn",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/restrict-template-expressions" :"off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unsafe-return":"off"
       }
     }
   ],
@@ -15,8 +23,5 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
-  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
-  "rules": {
-    "@typescript-eslint/consistent-type-imports": "warn"
-  }
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"]  
 }

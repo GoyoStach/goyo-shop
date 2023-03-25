@@ -14,24 +14,19 @@ import {
 } from '@chakra-ui/react'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import { zoomIn } from 'utils/motion'
 
 import ProductIndividual from 'components/shop/ProductIndividual'
 import Link from 'next/link'
-
-import { mockDataWatchs } from 'mock'
 import type { ProductSimple } from 'types/ProductSimple.type'
+import { fetchQuery } from 'utils/strapiAPI'
 
 type Props = {
   data: ProductSimple
 }
 
 const IndividualProductPage: NextPage<Props> = ({ data }) => {
-  const router = useRouter()
-  const { id } = router.query
-
   return (
     <>
       <Head>
@@ -68,10 +63,10 @@ const IndividualProductPage: NextPage<Props> = ({ data }) => {
             </BreadcrumbItem>
 
             <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink href="#">{data.name}</BreadcrumbLink>
+              <BreadcrumbLink href="#">{data.attributes.name}</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
-          <Heading>{id}</Heading>
+          <Heading>{data.attributes.name}</Heading>
         </Container>
 
         <Center
@@ -89,19 +84,19 @@ const IndividualProductPage: NextPage<Props> = ({ data }) => {
   )
 }
 
-export function getServerSideProps(context: any) {
+export const getServerSideProps = async (context: any) => {
   /**Here should happen data fetching to Stripe or the backend to get the right info concerning the product */
   const { id } = context.query
+  const { data }: { data: ProductSimple } = await fetchQuery(
+    `Products/${id}`,
+    'populate=*'
+  )
 
-  const data = mockDataWatchs.find(e => e.name === id) || {
-    imageSrc:
-      'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80',
-    brand: 'Brand',
-    name: 'Nice Chair, pink',
-    price: 110,
-    previousPrice: 240
+  return {
+    props: {
+      data
+    }
   }
-  return { props: { data } }
 }
 
 export default IndividualProductPage

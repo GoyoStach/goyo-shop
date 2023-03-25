@@ -1,27 +1,15 @@
-import type { GetServerSideProps } from 'next'
 import { type NextPage } from 'next'
 import Head from 'next/head'
 
-import {
-  Center,
-  Flex,
-  Heading,
-  Spacer,
-  useColorModeValue
-} from '@chakra-ui/react'
+import { Flex, Spacer, useColorModeValue } from '@chakra-ui/react'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import ProductGrid from 'components/shop/ProductGrid'
-import { motion } from 'framer-motion'
-import { zoomIn } from 'utils/motion'
-import { mockDataChairs, mockDataWatchs } from 'mock'
 import type { ProductSimple } from 'types/ProductSimple.type'
+import { fetchQuery } from 'utils/strapiAPI'
 
 type Props = {
-  data: {
-    mockDataChairs: ProductSimple[]
-    mockDataWatchs: ProductSimple[]
-  }
+  data: ProductSimple[]
 }
 
 const Shop: NextPage<Props> = ({ data }) => {
@@ -49,25 +37,8 @@ const Shop: NextPage<Props> = ({ data }) => {
         <Header />
 
         <Spacer />
-        <Center
-          as={motion.div}
-          variants={zoomIn(0.1, 1)}
-          initial="hidden"
-          whileInView={'show'}
-        >
-          <Heading>Chaises</Heading>
-        </Center>
-        <ProductGrid data={data.mockDataChairs} />
-        <Spacer />
-        <Center
-          as={motion.div}
-          variants={zoomIn(0.1, 1)}
-          initial="hidden"
-          whileInView={'show'}
-        >
-          <Heading>Montres</Heading>
-        </Center>
-        <ProductGrid data={data.mockDataWatchs} />
+
+        <ProductGrid data={data} />
         <Spacer />
         <Footer />
       </Flex>
@@ -75,13 +46,18 @@ const Shop: NextPage<Props> = ({ data }) => {
   )
 }
 
-export const getServerSideProps = (context: any) => {
+export const getServerSideProps = async () => {
   /**Here should happen data fetching to Stripe or the backend to get the right info concerning the product */
-  const { id } = context.query
+  const { data }: { data: ProductSimple[] } = await fetchQuery(
+    'Products',
+    'populate=*'
+  )
 
-  const data = { mockDataWatchs, mockDataChairs }
-
-  return { props: { data } }
+  return {
+    props: {
+      data
+    }
+  }
 }
 
 export default Shop

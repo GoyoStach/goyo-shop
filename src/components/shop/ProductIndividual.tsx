@@ -8,6 +8,7 @@ import {
   Image,
   Grid
 } from '@chakra-ui/react'
+import { env } from 'env.mjs'
 import type { FC } from 'react'
 import type { ProductSimple } from 'types/ProductSimple.type'
 
@@ -48,7 +49,9 @@ const ProductIndividual: FC<Props> = ({ data }) => {
             pos: 'absolute',
             top: 5,
             left: 0,
-            backgroundImage: `url(${data.imageSrc})`,
+            backgroundImage: `url(${env.NEXT_PUBLIC_BACKEND_URL}${
+              data.attributes.images.data[0]?.attributes.url || ''
+            })`,
             filter: 'blur(15px)',
             zIndex: -1
           }}
@@ -63,8 +66,10 @@ const ProductIndividual: FC<Props> = ({ data }) => {
             height={[230, 230, 230, 230, 230 * 2]}
             width={[282, 282, 282, 282, 282 * 2]}
             objectFit={'cover'}
-            src={data.imageSrc}
-            alt={data.name}
+            src={`${env.NEXT_PUBLIC_BACKEND_URL}${
+              data.attributes.images.data[0]?.attributes.url || ''
+            }`}
+            alt={data.attributes.images.data[0]?.attributes.name}
           />
         </Box>
         <Stack
@@ -78,15 +83,16 @@ const ProductIndividual: FC<Props> = ({ data }) => {
             textTransform={'uppercase'}
             align={['center', 'center', 'center', 'left']}
           >
-            {data.brand}
+            {data.attributes.brand}
           </Text>
           <Heading
             fontSize={'2xl'}
             fontFamily={'body'}
             fontWeight={500}
           >
-            {data.name}
+            {data.attributes.name}
           </Heading>
+          {/**
           <Stack
             direction={'row'}
             align={'center'}
@@ -104,6 +110,7 @@ const ProductIndividual: FC<Props> = ({ data }) => {
               {data.previousPrice} €
             </Text>
           </Stack>
+           */}
         </Stack>
       </Grid>
     </Center>

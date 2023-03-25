@@ -10,17 +10,19 @@ import {
 import Link from 'next/link'
 import type { FC } from 'react'
 import type { ProductSimple } from 'types/ProductSimple.type'
+import { env } from 'env.mjs'
 
 type Props = {
   data: ProductSimple
 }
 
 const ProductSimpleComponent: FC<Props> = ({ data }) => {
+  console.log(data)
   return (
     <Center py={12}>
       <Link
         href={{
-          pathname: `/Shop/product/${data.name}`
+          pathname: `/Shop/product/${data.id}`
         }}
       >
         <Box
@@ -47,7 +49,9 @@ const ProductSimpleComponent: FC<Props> = ({ data }) => {
               pos: 'absolute',
               top: 5,
               left: 0,
-              backgroundImage: `url(${data.imageSrc})`,
+              backgroundImage: `url(${env.NEXT_PUBLIC_BACKEND_URL}${
+                data.attributes.images.data[0]?.attributes.url || ''
+              })`,
               filter: 'blur(15px)',
               zIndex: -1
             }}
@@ -62,8 +66,10 @@ const ProductSimpleComponent: FC<Props> = ({ data }) => {
               height={230}
               width={282}
               objectFit={'cover'}
-              src={data.imageSrc}
-              alt={data.name}
+              src={`${env.NEXT_PUBLIC_BACKEND_URL}${
+                data.attributes.images.data[0]?.attributes.url || ''
+              }`}
+              alt={data.attributes.images.data[0]?.attributes.name}
             />
           </Box>
           <Stack
@@ -76,19 +82,21 @@ const ProductSimpleComponent: FC<Props> = ({ data }) => {
               fontSize={'sm'}
               textTransform={'uppercase'}
             >
-              {data.brand}
+              {data.attributes.brand}
             </Text>
             <Heading
               fontSize={'2xl'}
               fontFamily={'body'}
               fontWeight={500}
             >
-              {data.name}
+              {data.attributes.name}
             </Heading>
+            {/*
             <Stack
               direction={'row'}
               align={'center'}
             >
+              
               <Text
                 fontWeight={800}
                 fontSize={'xl'}
@@ -100,8 +108,8 @@ const ProductSimpleComponent: FC<Props> = ({ data }) => {
                 color={'gray.600'}
               >
                 {data.previousPrice} €
-              </Text>
-            </Stack>
+            </Text>
+            </Stack>*/}
           </Stack>
         </Box>
       </Link>

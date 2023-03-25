@@ -26,7 +26,7 @@ const ProductGrid: FC<Props> = ({ data }) => {
       {data.map((product, index) => {
         return (
           <motion.div
-            key={product.name}
+            key={product.id}
             variants={zoomIn(index * 0.1, 1)}
             initial="hidden"
             whileInView={'show'}
