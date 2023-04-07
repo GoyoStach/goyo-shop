@@ -22,28 +22,6 @@ import { navVariants } from 'utils/motion'
 import Link from 'next/link'
 
 const Header = () => {
-  /*
-  const { data: sessionData } = useSession()
-
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  )
-
-  return (
-    <div>
-      <p>
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? 'Sign out' : 'Sign in'}
-      </button>
-    </div>
-  )*/
-
   const { colorMode, toggleColorMode } = useColorMode()
 
   const [isConnected, setIsConnected] = useState(false)

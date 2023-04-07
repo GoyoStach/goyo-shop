@@ -1,0 +1,94 @@
+{
+    "data": {
+        "id": 1,
+        "attributes": {
+            "name": "Casio, AQ-800ECGG-4A",
+            "description": "Replongez dans les années 80. \nSon verre coloré offre une nouvelle vie au design AQ-450, intégrant à merveille un style rétro et élégant. \nLes doubles cadrans et écrans LCD combinent beauté mécanique et performances numériques, tandis que le léger angle au-dessus de l'écran LCD lui confère une forme très mode, clin d'œil au style des années 80. \nL'alarme, le chronomètre et l'affichage d'une seconde heure vous facilitent la vie, tandis que l'étanchéité adaptée à un usage quotidien garantit votre tranquillité d'esprit, même en cas de pluie. \nUne montre fonctionnelle, élégante et pratique dans un look néo vintage qui rappelle le bon vieux temps.",
+            "createdAt": "2023-03-25T11:10:17.526Z",
+            "updatedAt": "2023-03-25T11:12:34.828Z",
+            "publishedAt": "2023-03-25T11:12:34.823Z",
+            "brand": "Casio Vintage",
+            "categories": {
+                "data": [
+                    {
+                        "id": 1,
+                        "attributes": {
+                            "name": "Watchs",
+                            "createdAt": "2023-03-20T12:49:27.025Z",
+                            "updatedAt": "2023-03-20T12:53:14.094Z",
+                            "publishedAt": "2023-03-20T12:53:14.089Z"
+                        }
+                    }
+                ]
+            },
+            "images": {
+                "data": [
+                    {
+                        "id": 1,
+                        "attributes": {
+                            "name": "image.avif",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": null,
+                            "height": null,
+                            "formats": null,
+                            "hash": "image_631392613b",
+                            "ext": ".avif",
+                            "mime": "image/avif",
+                            "size": 11.17,
+                            "url": "/uploads/image_631392613b.avif",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2023-03-25T11:10:10.827Z",
+                            "updatedAt": "2023-03-25T11:10:10.827Z"
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "attributes": {
+                            "name": "AQ-800ECGG-4A.avif",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": null,
+                            "height": null,
+                            "formats": null,
+                            "hash": "AQ_800_ECGG_4_A_1a391aaf34",
+                            "ext": ".avif",
+                            "mime": "image/avif",
+                            "size": 164.02,
+                            "url": "/uploads/AQ_800_ECGG_4_A_1a391aaf34.avif",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2023-03-25T11:10:10.830Z",
+                            "updatedAt": "2023-03-25T11:10:10.830Z"
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "attributes": {
+                            "name": "image.avif",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": null,
+                            "height": null,
+                            "formats": null,
+                            "hash": "image_4f7643faa8",
+                            "ext": ".avif",
+                            "mime": "image/avif",
+                            "size": 6.19,
+                            "url": "/uploads/image_4f7643faa8.avif",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2023-03-25T11:10:10.826Z",
+                            "updatedAt": "2023-03-25T11:10:10.826Z"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "meta": {}
+}
