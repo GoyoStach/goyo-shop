@@ -11,75 +11,72 @@ import {
   useColorMode,
   Center,
   Heading,
-  Container
-} from '@chakra-ui/react'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+  Container,
+} from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { navVariants } from 'utils/motion'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { navVariants } from "utils/motion";
 
-import Link from 'next/link'
+import Link from "next/link";
 
 const Header = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode();
 
-  const [isConnected, setIsConnected] = useState(false)
+  const [isConnected, setIsConnected] = useState(false);
 
   const handleSignIn = () => {
-    setIsConnected(!isConnected)
-  }
+    setIsConnected(!isConnected);
+  };
 
   return (
-    <Container
-      p={2}
-      maxW={'6xl'}
-      textAlign="center"
-    >
+    <Container p={2} maxW={"6xl"} textAlign="center">
       <Flex
         as={motion.div}
         variants={navVariants}
         initial="hidden"
-        whileInView={'show'}
+        whileInView={"show"}
         h={16}
-        alignItems={'center'}
-        justifyContent={'space-between'}
+        alignItems={"center"}
+        justifyContent={"space-between"}
       >
-        <Link href={'/'}>
-          <Heading>Goyo-Shop</Heading>
+        <Link href={"/"}>
+          <Heading>Goyo-Demo-Shop</Heading>
         </Link>
 
-        <Flex alignItems={'center'}>
-          <Stack
-            direction={'row'}
-            spacing={7}
-          >
+        <Flex alignItems={"center"}>
+          <Stack direction={"row"} spacing={7}>
             <Button onClick={toggleColorMode}>
-              {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
 
             {isConnected ? (
               <Menu>
                 <MenuButton
                   as={Button}
-                  rounded={'full'}
-                  cursor={'pointer'}
+                  rounded={"full"}
+                  cursor={"pointer"}
                   minW={0}
                 >
                   <Avatar
-                    color={colorMode === 'light' ? 'black' : 'white'}
-                    size={'sm'}
-                    name={'Goyo'}
+                    color={colorMode === "light" ? "black" : "white"}
+                    size={"sm"}
+                    name={"Goyo"}
                   />
                 </MenuButton>
-                <MenuList alignItems={'center'}>
+                <MenuList alignItems={"center"}>
                   <Center>
                     <p>Goyo</p>
                   </Center>
                   <MenuDivider />
-                  <MenuItem>Shop</MenuItem>
-                  <MenuItem>About</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem>
+                    <Link href={"/Shop"}>Shop</Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link href={"/About"}>About</Link>
+                  </MenuItem>
+                  <MenuItem onClick={() => handleSignIn()}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             ) : (
@@ -89,7 +86,7 @@ const Header = () => {
         </Flex>
       </Flex>
     </Container>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

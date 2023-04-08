@@ -6,8 +6,6 @@ import { z } from "zod";
  */
 const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
-  NEXT_PUBLIC_BACKEND_URL:z.string(),
-  NEXT_PUBLIC_BACKEND_TOKEN:z.string()
 });
 
 /**
@@ -16,9 +14,6 @@ const server = z.object({
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 const client = z.object({
-  // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
-  NEXT_PUBLIC_BACKEND_URL:z.string(),
-  NEXT_PUBLIC_BACKEND_TOKEN:z.string()
 });
 
 /**
@@ -28,8 +23,6 @@ const client = z.object({
  */
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
-  NEXT_PUBLIC_BACKEND_URL :process.env.NEXT_PUBLIC_BACKEND_URL,
-  NEXT_PUBLIC_BACKEND_TOKEN:process.env.NEXT_PUBLIC_BACKEND_TOKEN
 };
 
 // Don't touch the part below

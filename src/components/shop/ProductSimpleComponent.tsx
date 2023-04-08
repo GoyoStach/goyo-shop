@@ -5,90 +5,81 @@ import {
   Heading,
   Text,
   Stack,
-  Image
-} from '@chakra-ui/react'
-import Link from 'next/link'
-import type { FC } from 'react'
-import type { ProductSimple } from 'types/ProductSimple.type'
-import { env } from 'env.mjs'
+  Image,
+} from "@chakra-ui/react";
+import Link from "next/link";
+import type { FC } from "react";
+import type { ProductSimple } from "types/ProductSimple.type";
+import { env } from "env.mjs";
 
 type Props = {
-  data: ProductSimple
-}
+  data: ProductSimple;
+};
 
 const ProductSimpleComponent: FC<Props> = ({ data }) => {
-  console.log(data)
+  console.log(data);
   return (
     <Center py={12}>
       <Link
         href={{
-          pathname: `/Shop/product/${data.id}`
+          pathname: `/Shop/product/${data.id}`,
         }}
       >
         <Box
-          role={'group'}
+          role={"group"}
           p={6}
-          maxW={'330px'}
-          w={'full'}
-          bg={useColorModeValue('white', 'gray.800')}
-          boxShadow={'2xl'}
-          rounded={'lg'}
-          pos={'relative'}
+          maxW={"330px"}
+          w={"full"}
+          bg={useColorModeValue("white", "gray.800")}
+          boxShadow={"2xl"}
+          rounded={"lg"}
+          pos={"relative"}
           zIndex={1}
         >
           <Box
-            rounded={'lg'}
+            rounded={"lg"}
             mt={-12}
-            pos={'relative'}
-            height={'230px'}
+            pos={"relative"}
+            height={"230px"}
             _after={{
-              transition: 'all .3s ease',
+              transition: "all .3s ease",
               content: '""',
-              w: 'full',
-              h: 'full',
-              pos: 'absolute',
+              w: "full",
+              h: "full",
+              pos: "absolute",
               top: 5,
               left: 0,
-              backgroundImage: `url(${env.NEXT_PUBLIC_BACKEND_URL}${
-                data.attributes.images.data[0]?.attributes.url || ''
-              })`,
-              filter: 'blur(15px)',
-              zIndex: -1
+              backgroundImage: `url(${
+                data.attributes.images.data[0]?.attributes.url || ""
+              }),url('/placeholder.jpg')`,
+              filter: "blur(15px)",
+              zIndex: -1,
             }}
             _groupHover={{
               _after: {
-                filter: 'blur(20px)'
-              }
+                filter: "blur(20px)",
+              },
             }}
           >
             <Image
-              rounded={'lg'}
+              rounded={"lg"}
               height={230}
               width={282}
-              objectFit={'cover'}
-              src={`${env.NEXT_PUBLIC_BACKEND_URL}${
-                data.attributes.images.data[0]?.attributes.url || ''
-              }`}
+              objectFit={"cover"}
+              src={`${data.attributes.images.data[0]?.attributes.url || ""}`}
               alt={data.attributes.images.data[0]?.attributes.name}
+              fallbackSrc={"/placeholder.jpg"}
             />
           </Box>
-          <Stack
-            pt={10}
-            align={'center'}
-            textAlign={'center'}
-          >
+          <Stack pt={10} align={"center"} textAlign={"center"}>
             <Text
-              color={'gray.500'}
-              fontSize={'sm'}
-              textTransform={'uppercase'}
+              color={"gray.500"}
+              fontSize={"sm"}
+              textTransform={"uppercase"}
             >
               {data.attributes.brand}
             </Text>
-            <Heading
-              fontSize={'2xl'}
-              fontFamily={'body'}
-              fontWeight={500}
-            >
+            <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
               {data.attributes.name}
             </Heading>
             {/*
@@ -114,7 +105,7 @@ const ProductSimpleComponent: FC<Props> = ({ data }) => {
         </Box>
       </Link>
     </Center>
-  )
-}
+  );
+};
 
-export default ProductSimpleComponent
+export default ProductSimpleComponent;

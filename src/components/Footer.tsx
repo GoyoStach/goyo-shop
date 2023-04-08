@@ -6,10 +6,10 @@ import {
   Stack,
   Text,
   useColorModeValue,
-  VisuallyHidden
-} from '@chakra-ui/react'
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
-import type { ReactNode } from 'react'
+  VisuallyHidden,
+} from "@chakra-ui/react";
+import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import type { ReactNode } from "react";
 
 const Logo = (props: any) => {
   return (
@@ -28,108 +28,89 @@ const Logo = (props: any) => {
         fill="#2F855A"
       />
     </svg>
-  )
-}
+  );
+};
 
 const SocialButton = ({
   children,
   label,
-  href
+  href,
 }: {
-  children: ReactNode
-  label: string
-  href: string
+  children: ReactNode;
+  label: string;
+  href: string;
 }) => {
   return (
     <chakra.button
-      bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-      rounded={'full'}
+      bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+      rounded={"full"}
       w={8}
       h={8}
-      cursor={'pointer'}
-      as={'a'}
+      cursor={"pointer"}
+      as={"a"}
       href={href}
-      display={'inline-flex'}
-      alignItems={'center'}
-      justifyContent={'center'}
-      transition={'background 0.3s ease'}
+      display={"inline-flex"}
+      alignItems={"center"}
+      justifyContent={"center"}
+      transition={"background 0.3s ease"}
       _hover={{
-        bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200')
+        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
       }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
       {children}
     </chakra.button>
-  )
-}
+  );
+};
 
 const Footer = () => {
   return (
-    <Container
-      p={2}
-      maxW={'6xl'}
-    >
+    <Container p={2} maxW={"6xl"}>
       <Container
         as={Stack}
         py={4}
         spacing={4}
-        justify={'center'}
-        align={'center'}
+        justify={"center"}
+        align={"center"}
       >
         <Logo />
-        <Stack
-          direction={'row'}
-          spacing={6}
-        >
-          <Link href={'/'}>Accueil</Link>
-          <Link href={'/Shop'}>Shop</Link>
-          <Link href={'/About'}>À propos</Link>
-          <Link href={'#'}>Contact</Link>
+        <Stack direction={"row"} spacing={6}>
+          <Link href={"/"}>Accueil</Link>
+          <Link href={"/Shop"}>Shop</Link>
+          <Link href={"/About"}>À propos</Link>
         </Stack>
       </Container>
 
       <Box
         borderTopWidth={1}
-        borderStyle={'solid'}
-        borderColor={useColorModeValue('gray.100', 'gray.700')}
+        borderStyle={"solid"}
+        borderColor={useColorModeValue("gray.100", "gray.700")}
       >
         <Container
           as={Stack}
-          maxW={'6xl'}
+          maxW={"6xl"}
           py={4}
-          direction={{ base: 'column', md: 'row' }}
+          direction={{ base: "column", md: "row" }}
           spacing={4}
-          justify={{ base: 'center', md: 'space-between' }}
-          align={{ base: 'center', md: 'center' }}
+          justify={{ base: "center", md: "space-between" }}
+          align={{ base: "center", md: "center" }}
         >
           <Text>© 2023 Guillaume EXCOFFIER. All rights reserved</Text>
-          <Stack
-            direction={'row'}
-            spacing={6}
-          >
-            <SocialButton
-              label={'Twitter'}
-              href={'#'}
-            >
+          <Stack direction={"row"} spacing={6}>
+            <SocialButton label={"Twitter"} href={"#"}>
               <FaTwitter />
             </SocialButton>
-            <SocialButton
-              label={'YouTube'}
-              href={'#'}
-            >
+            <SocialButton label={"YouTube"} href={"#"}>
               <FaYoutube />
             </SocialButton>
-            <SocialButton
-              label={'Instagram'}
-              href={'#'}
-            >
+            <SocialButton label={"Instagram"} href={"#"}>
               <FaInstagram />
             </SocialButton>
           </Stack>
         </Container>
       </Box>
     </Container>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

@@ -8,6 +8,10 @@ attributes:
         updatedAt:Date;
         publishedAt:Date;
         brand:string
+        price?: string;
+        currency?:string,
+        previousPrice?:string;
+        details?:Details[];
         categories: 
             {
                 data:Categorie[]
@@ -19,6 +23,11 @@ attributes:
     }
 }
 
+interface Details {
+    id:number;
+    value:string;
+    icon:string;
+}
 interface Image {
     id:number
     attributes:

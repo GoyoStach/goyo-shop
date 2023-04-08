@@ -8,6 +8,15 @@
             "updatedAt": "2023-03-25T11:12:34.828Z",
             "publishedAt": "2023-03-25T11:12:34.823Z",
             "brand": "Casio Vintage",
+            "price": "110",
+            "currency":"€",
+            "previousPrice":"220",
+            "details":[
+                {"id":1,"value":"Description Text 1","icon":"/placeholder.jpg"},
+                {"id":2,"value":"Description Text 2","icon":"/placeholder.jpg"},
+                {"id":3,"value":"Description Text 3","icon":"/placeholder.jpg"},
+                {"id":4,"value":"Description Text 4","icon":"/placeholder.jpg"}
+            ],
             "categories": {
                 "data": [
                     {
